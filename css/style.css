@@ -14,3 +14,33 @@
 .carousel-indicators [data-bs-target] {
     background-color: #f4623a !important;
 }
+
+.icon-size {
+    width: 4vw;
+    cursor: pointer;
+}
+
+.icon-size:hover {
+    width: 4.5vw;
+}
+
+.bg-main {
+    background-color: #ffbaa5;
+}
+
+.success-message {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background: rgba(0,0,0,.6); 
+    color: #fff; 
+    font-size: 1.25rem;
+    border-radius: 10px;
+}
+
+.map-size {
+    width: 80vw;
+    height: 70vh;
+}
