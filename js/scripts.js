@@ -1,12 +1,3 @@
-/*!
-* Start Bootstrap - Creative v7.0.7 (https://startbootstrap.com/theme/creative)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-creative/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -58,8 +49,6 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-
-// Example starter JavaScript for disabling form submissions if there are invalid fields
 (function () {
   'use strict'
 
@@ -70,12 +59,55 @@ window.addEventListener('DOMContentLoaded', event => {
   Array.prototype.slice.call(forms)
     .forEach(function (form) {
       form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
+        event.preventDefault()
+        event.stopPropagation()
+        
+        if (form.checkValidity()) {
+            showSuccessMessage(form);
+            form.reset();
+            form.classList.remove('was-validated');
+        } else {
+            form.classList.add('was-validated');
         }
-
-        form.classList.add('was-validated')
       }, false)
     })
+    
+  function showSuccessMessage(form) {
+      const successMessage = form.querySelector('.form-result-primary');
+      
+      if (successMessage) {
+          document.body.style.overflow = 'hidden';
+          
+          successMessage.classList.remove('d-none');
+          successMessage.classList.add('d-flex');
+          
+          const closeMessage = function() {
+              document.body.style.overflow = '';
+              
+              successMessage.classList.add('d-none');
+              successMessage.classList.remove('d-flex');
+              
+              document.removeEventListener('click', closeMessage);
+          };
+          
+          // Добавляем проверку, чтобы не закрывалось сразу при клике на кнопку
+          setTimeout(() => {
+              document.addEventListener('click', function handler(e) {
+                  // Проверяем, что клик был не по кнопке отправки
+                  if (!e.target.closest('#submitButton')) {
+                      closeMessage();
+                      document.removeEventListener('click', handler);
+                  }
+              });
+          }, 100);
+          
+          setTimeout(function() {
+              if (!successMessage.classList.contains('d-none')) {
+                  closeMessage();
+              }
+          }, 3000);
+      } else {
+          console.log('Сообщение об успехе не найдено'); // Для отладки
+      }
+  }
 })()
