@@ -1,0 +1,16 @@
+.btn {
+    font-size: 20px;
+}
+
+.text-fluid {
+    font-size: 21vw;
+    color: #f4623a;
+}
+
+.btn-second:active, .btn-second:focus, .btn-second:hover {
+    color: #f4623a;
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: #f4623a !important;
+}
